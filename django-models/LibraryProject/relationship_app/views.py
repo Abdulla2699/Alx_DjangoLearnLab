@@ -1,44 +1,24 @@
-from django.shortcuts import render, redirect
-from django.contrib.auth import login, logout
-from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
-from django.urls import reverse_lazy
-from django.views.generic.edit import CreateView
-from django.views.generic.detail import DetailView
-from django.views.generic.list import ListView
-from .models import Book, Library
+from django.shortcuts import render
+from django.contrib.auth.decorators import user_passes_test
+from .models import UserProfile
 
-# Class-based view to list all books
-class BookListView(ListView):
-    model = Book
-    template_name = 'relationship_app/list_books.html'
-    context_object_name = 'books'
+def is_admin(user):
+    return user.userprofile.role == 'Admin'
 
-# Class-based view to display library details
-class LibraryDetailView(DetailView):
-    model = Library
-    template_name = 'relationship_app/library_detail.html'
-    context_object_name = 'library'
+def is_librarian(user):
+    return user.userprofile.role == 'Librarian'
 
-# Registration view
-class RegisterView(CreateView):
-    form_class = UserCreationForm
-    template_name = 'relationship_app/register.html'
-    success_url = reverse_lazy('login')
+def is_member(user):
+    return user.userprofile.role == 'Member'
 
-# Login view
-def custom_login(request):
-    if request.method == 'POST':
-        form = AuthenticationForm(request, data=request.POST)
-        if form.is_valid():
-            user = form.get_user()
-            login(request, user)
-            return redirect('list_books')
-    else:
-        form = AuthenticationForm()
-    return render(request, 'relationship_app/login.html', {'form': form})
+@user_passes_test(is_admin)
+def admin_view(request):
+    return render(request, 'relationship_app/admin_view.html')
 
-# Logout view
-def custom_logout(request):
-    logout(request)
-    return render(request, 'relationship_app/logout.html')
-["UserCreationForm()"]
+@user_passes_test(is_librarian)
+def librarian_view(request):
+    return render(request, 'relationship_app/librarian_view.html')
+
+@user_passes_test(is_member)
+def member_view(request):
+    return render(request, 'relationship_app/member_view.html')
