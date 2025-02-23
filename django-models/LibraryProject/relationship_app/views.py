@@ -41,3 +41,4 @@ def custom_login(request):
 def custom_logout(request):
     logout(request)
     return render(request, 'relationship_app/logout.html')
+["UserCreationForm()"]
