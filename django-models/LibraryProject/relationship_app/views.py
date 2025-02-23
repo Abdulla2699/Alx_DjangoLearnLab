@@ -1,33 +1,37 @@
-from django.shortcuts import render
-from .models import Book
-
-def list_books(request):
-    books = Book.objects.all()
-    return render(request, 'relationship_app/list_books.html', {'books': books})
+from django.shortcuts import render, redirect
+from django.contrib.auth import login, logout
+from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
+from django.urls import reverse_lazy
+from django.views.generic.edit import CreateView
 from django.views.generic.detail import DetailView
-from .models import Library
+from django.views.generic.list import ListView
+from .models import Book, Library
 
+# Class-based view to list all books
+class BookListView(ListView):
+    model = Book
+    template_name = 'relationship_app/list_books.html'
+    context_object_name = 'books'
+
+# Class-based view to display library details
 class LibraryDetailView(DetailView):
     model = Library
     template_name = 'relationship_app/library_detail.html'
     context_object_name = 'library'
-from django.contrib.auth import views as auth_views
-from django.urls import path, include
 
-# Login view
-class CustomLoginView(auth_views.LoginView):
-    template_name = 'relationship_app/login.html'
-
-# Logout view
-class CustomLogoutView(auth_views.LogoutView):
-    template_name = 'relationship_app/logout.html'
-
-# Registration view - we'll need to create a custom form for this
-from django.contrib.auth.forms import UserCreationForm
-from django.urls import reverse_lazy
-from django.views.generic.edit import CreateView
-
+# Registration view
 class RegisterView(CreateView):
     form_class = UserCreationForm
     template_name = 'relationship_app/register.html'
     success_url = reverse_lazy('login')
+
+# Login view
+def custom_login(request):
+    if request.method == 'POST':
+        form = AuthenticationForm(request, data=request.POST)
+        if form.is_valid():
+            user = form.get_user()
+            login(request, user)
+            return redirect('list_books')
+    else:
+        form = Authentication
