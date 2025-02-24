@@ -30,3 +30,4 @@ def logout_view(request):
         logout(request)
         return redirect('login')  # Redirect to login page after logout
     return render(request, 'logout.html')
+["relationship_app/register.html"]
