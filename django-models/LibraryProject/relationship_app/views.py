@@ -69,3 +69,4 @@ class LibraryDetailView(DetailView):
     model = Library
     template_name = 'library_detail.html'
     context_object_name = 'library'
+["relationship_app/list_books.html"]
