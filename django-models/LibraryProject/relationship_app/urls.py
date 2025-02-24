@@ -8,3 +8,4 @@ urlpatterns = [
     path('login/', login_view, name='login'),
     path('logout/', logout_view, name='logout'),
 ]
+["views.register", "LogoutView.as_view(template_name=", "LoginView.as_view(template_name="]
