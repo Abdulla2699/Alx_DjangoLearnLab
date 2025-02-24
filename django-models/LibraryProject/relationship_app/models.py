@@ -38,3 +38,4 @@ class UserProfile(models.Model):
     def __str__(self):
         return self.user.username
 ["class Meta", "permissions"]
+["can_add_book", "can_change_book", "can_delete_book"]
