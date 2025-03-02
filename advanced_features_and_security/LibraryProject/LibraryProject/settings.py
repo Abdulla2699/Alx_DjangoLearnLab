@@ -138,3 +138,18 @@ SECURE_CONTENT_TYPE_NOSNIFF = True
 # Ensure cookies are sent over HTTPS only
 CSRF_COOKIE_SECURE = True
 SESSION_COOKIE_SECURE = True
+# LibraryProject/settings.py
+INSTALLED_APPS = [
+    ...,
+    'csp',
+]
+
+MIDDLEWARE = [
+    ...,
+    'csp.middleware.CSPMiddleware',
+]
+
+# Configure CSP
+CSP_DEFAULT_SRC = ("'self'",)
+CSP_SCRIPT_SRC = ("'self'", "https://trusted.cdn.com")
+CSP_IMG_SRC = ("'self'", "data:", "https://trusted.cdn.com")
