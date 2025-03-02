@@ -35,3 +35,34 @@ class YourModelForm(forms.ModelForm):
     class Meta:
         model = YourModel
         fields = '__all__'
+# LibraryProject/views.py
+"""
+This view handles search functionality.
+User inputs are validated to prevent SQL injection.
+"""
+
+# Create a README file
+"""
+README.md
+
+# Security Best Practices in Django
+
+## Configured Secure Settings
+- DEBUG is set to False in production.
+- Browser-side protections: SECURE_BROWSER_XSS_FILTER, X_FRAME_OPTIONS, SECURE_CONTENT_TYPE_NOSNIFF.
+- Cookies are sent over HTTPS: CSRF_COOKIE_SECURE, SESSION_COOKIE_SECURE.
+
+## CSRF Protection
+- All forms include CSRF tokens using `{% csrf_token %}`.
+
+## Secure Data Access
+- Views use Django’s ORM to parameterize queries.
+- User inputs are validated and sanitized using Django forms.
+
+## Content Security Policy
+- CSP header configured to reduce the risk of XSS attacks.
+
+## Testing
+- Manually tested the application to check for secure handling of inputs and responses.
+- Tested forms and input fields for CSRF and XSS vulnerabilities.
+"""
