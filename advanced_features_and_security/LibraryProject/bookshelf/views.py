@@ -66,3 +66,4 @@ README.md
 - Manually tested the application to check for secure handling of inputs and responses.
 - Tested forms and input fields for CSRF and XSS vulnerabilities.
 """
+["from .forms import ExampleForm"]
