@@ -44,3 +44,40 @@ from django.conf import settings
 
 class AnotherModel(models.Model):
     user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
+# advanced_features_and_security/models.py
+from django.db import models
+
+class YourModel(models.Model):
+    name = models.CharField(max_length=100)
+    # Add your fields here
+
+    class Meta:
+        permissions = [
+            ("can_view", "Can view the model"),
+            ("can_create", "Can create the model"),
+            ("can_edit", "Can edit the model"),
+            ("can_delete", "Can delete the model"),
+        ]
+from django.contrib.auth.models import Group, Permission
+from django.contrib.contenttypes.models import ContentType
+from .models import YourModel
+
+content_type = ContentType.objects.get_for_model(YourModel)
+
+permissions = {
+    'can_view': Permission.objects.get(codename='can_view', content_type=content_type),
+    'can_create': Permission.objects.get(codename='can_create', content_type=content_type),
+    'can_edit': Permission.objects.get(codename='can_edit', content_type=content_type),
+    'can_delete': Permission.objects.get(codename='can_delete', content_type=content_type),
+}
+
+groups = {
+    'Editors': ['can_edit', 'can_create'],
+    'Viewers': ['can_view'],
+    'Admins': ['can_view', 'can_create', 'can_edit', 'can_delete'],
+}
+
+for group_name, perms in groups.items():
+    group, created = Group.objects.get_or_create(name=group_name)
+    for perm in perms:
+        group.permissions.add(permissions[perm])
