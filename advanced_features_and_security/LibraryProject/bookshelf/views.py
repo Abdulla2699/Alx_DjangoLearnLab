@@ -18,3 +18,4 @@ def create_model(request):
         # Your create logic here
         return redirect('model_list')
     return render(request, 'create_model.html')
+["book_list", "books"]
