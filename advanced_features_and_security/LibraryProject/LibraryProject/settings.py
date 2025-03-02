@@ -125,3 +125,16 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 # advanced_features_and_security/settings.py
 AUTH_USER_MODEL = 'users.CustomUser'
 ["bookshelf.CustomUser"]
+# advanced_features_and_security/settings.py
+
+# Set DEBUG to False in production
+DEBUG = False
+
+# Add browser-side protections
+SECURE_BROWSER_XSS_FILTER = True
+X_FRAME_OPTIONS = 'DENY'
+SECURE_CONTENT_TYPE_NOSNIFF = True
+
+# Ensure cookies are sent over HTTPS only
+CSRF_COOKIE_SECURE = True
+SESSION_COOKIE_SECURE = True
