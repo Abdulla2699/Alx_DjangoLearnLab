@@ -162,3 +162,20 @@ SECURE_SSL_REDIRECT = True
 SECURE_HSTS_SECONDS = 31536000  # 1 year
 SECURE_HSTS_INCLUDE_SUBDOMAINS = True
 SECURE_HSTS_PRELOAD = True
+# LibraryProject/settings.py
+
+# Ensure session cookies are only transmitted over HTTPS
+SESSION_COOKIE_SECURE = True
+
+# Ensure CSRF cookies are only transmitted over HTTPS
+CSRF_COOKIE_SECURE = True
+# LibraryProject/settings.py
+
+# Prevent clickjacking
+X_FRAME_OPTIONS = 'DENY'
+
+# Prevent browsers from MIME-sniffing a response away from the declared content-type
+SECURE_CONTENT_TYPE_NOSNIFF = True
+
+# Enable browser’s XSS filtering
+SECURE_BROWSER_XSS_FILTER = True
