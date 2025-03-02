@@ -39,3 +39,8 @@ class CustomUserManager(BaseUserManager):
             raise ValueError('Superuser must have is_superuser=True.')
 
         return self.create_user(email, date_of_birth, password, **extra_fields)
+# In your other models
+from django.conf import settings
+
+class AnotherModel(models.Model):
+    user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
