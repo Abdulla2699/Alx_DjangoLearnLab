@@ -19,3 +19,19 @@ def create_model(request):
         return redirect('model_list')
     return render(request, 'create_model.html')
 ["book_list", "books"]
+# LibraryProject/bookshelf/views.py
+from django.shortcuts import render
+from .models import YourModel
+
+def search_view(request):
+    query = request.GET.get('q', '')
+    results = YourModel.objects.filter(name__icontains=query)  # Parameterized query
+    return render(request, 'search_results.html', {'results': results})
+
+# Ensure you validate and sanitize user inputs using Django forms
+from django import forms
+
+class YourModelForm(forms.ModelForm):
+    class Meta:
+        model = YourModel
+        fields = '__all__'
