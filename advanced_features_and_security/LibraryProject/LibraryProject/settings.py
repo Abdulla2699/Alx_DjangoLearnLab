@@ -153,3 +153,30 @@ MIDDLEWARE = [
 CSP_DEFAULT_SRC = ("'self'",)
 CSP_SCRIPT_SRC = ("'self'", "https://trusted.cdn.com")
 CSP_IMG_SRC = ("'self'", "data:", "https://trusted.cdn.com")
+# LibraryProject/settings.py
+
+# Redirect all non-HTTPS requests to HTTPS
+SECURE_SSL_REDIRECT = True
+
+# HTTP Strict Transport Security (HSTS)
+SECURE_HSTS_SECONDS = 31536000  # 1 year
+SECURE_HSTS_INCLUDE_SUBDOMAINS = True
+SECURE_HSTS_PRELOAD = True
+# LibraryProject/settings.py
+
+# Ensure session cookies are only transmitted over HTTPS
+SESSION_COOKIE_SECURE = True
+
+# Ensure CSRF cookies are only transmitted over HTTPS
+CSRF_COOKIE_SECURE = True
+# LibraryProject/settings.py
+
+# Prevent clickjacking
+X_FRAME_OPTIONS = 'DENY'
+
+# Prevent browsers from MIME-sniffing a response away from the declared content-type
+SECURE_CONTENT_TYPE_NOSNIFF = True
+
+# Enable browser’s XSS filtering
+SECURE_BROWSER_XSS_FILTER = True
+["SECURE_PROXY_SSL_HEADER", "HTTP_X_FORWARDED_PROTO"]
