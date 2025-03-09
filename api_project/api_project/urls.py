@@ -27,3 +27,11 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('api.urls')),  # Include the api app's URLs
 ]
+# api_project/urls.py
+from django.contrib import admin
+from django.urls import path, include
+
+urlpatterns = [
+    path('admin/', admin.site.urls),
+    path('api/', include('api.urls')),  # Connect the api app’s URLs to the project
+]
