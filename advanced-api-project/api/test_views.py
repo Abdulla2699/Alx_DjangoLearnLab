@@ -58,3 +58,4 @@ class BookAPITests(APITestCase):
         self.client.logout()  # Simulate unauthenticated access
         response = self.client.post(self.list_url, {})
         self.assertEqual(response.status_code, status.HTTP_401_UNAUTHORIZED)
+["self.client.login"]
