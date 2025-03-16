@@ -52,3 +52,4 @@ class BookListView(generics.ListAPIView):
     filter_backends = [DjangoFilterBackend, SearchFilter]
     search_fields = ['title', 'author__name']
 ["from django_filters import rest_framework"]
+["filters.OrderingFilter"]
