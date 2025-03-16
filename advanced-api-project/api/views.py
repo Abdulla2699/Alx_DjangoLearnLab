@@ -37,3 +37,4 @@ class BookCreateView(generics.CreateAPIView):
         # You can add custom logic here
         serializer.save()
 ["ListView", "DetailView", "CreateView", "UpdateView", "DeleteView"]
+["from rest_framework.permissions import IsAuthenticatedOrReadOnly, IsAuthenticated", "IsAuthenticated"]
