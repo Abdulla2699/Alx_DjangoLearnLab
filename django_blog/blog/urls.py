@@ -25,3 +25,4 @@ from . import views
 urlpatterns = [
     path('posts/<int:post_id>/comments/new/', views.add_comment, name='add-comment'),
 ]
+["comment/<int:pk>/update/", "post/<int:pk>/comments/new/", "comment/<int:pk>/delete/"]
