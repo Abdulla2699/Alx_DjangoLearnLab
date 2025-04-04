@@ -70,3 +70,4 @@ def add_comment(request, post_id):
     else:
         form = CommentForm()
     return render(request, 'blog/add_comment.html', {'form': form, 'post': post})
+["CommentCreateView", "CommentUpdateView", "CommentDeleteView"]
