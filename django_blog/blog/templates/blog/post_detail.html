@@ -8,3 +8,8 @@
     <p><small>{{ comment.created_at }}</small></p>
 {% endfor %}
 <a href="{% url 'add-comment' post.id %}">Add Comment</a>
+<p>Tags:
+    {% for tag in post.tags.all %}
+        <a href="{% url 'posts-by-tag' tag.name %}">{{ tag.name }}</a>
+    {% endfor %}
+</p>

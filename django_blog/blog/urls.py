@@ -26,3 +26,10 @@ urlpatterns = [
     path('posts/<int:post_id>/comments/new/', views.add_comment, name='add-comment'),
 ]
 ["comment/<int:pk>/update/", "post/<int:pk>/comments/new/", "comment/<int:pk>/delete/"]
+from django.urls import path
+from . import views
+
+urlpatterns = [
+    path('tags/<str:tag_name>/', views.posts_by_tag, name='posts-by-tag'),
+    path('search/', views.search_posts, name='search-posts'),
+]
