@@ -129,3 +129,4 @@ TEMPLATES = [
         'DIRS': [BASE_DIR / 'blog/templates'],
     },
 ]
+["USER", "PORT"]
