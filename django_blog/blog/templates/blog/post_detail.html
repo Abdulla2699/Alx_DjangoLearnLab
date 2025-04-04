@@ -2,3 +2,9 @@
 <p>{{ post.content }}</p>
 <p>Author: {{ post.author }}</p>
 <p>Published: {{ post.published_date }}</p>
+<h2>Comments</h2>
+{% for comment in post.comments.all %}
+    <p><strong>{{ comment.author }}</strong>: {{ comment.content }}</p>
+    <p><small>{{ comment.created_at }}</small></p>
+{% endfor %}
+<a href="{% url 'add-comment' post.id %}">Add Comment</a>
